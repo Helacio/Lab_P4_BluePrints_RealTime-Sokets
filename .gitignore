@@ -1,0 +1,5 @@
+# Lab content lives in its own repositories, not in this one.
+# back/  -> Helacio/Lab_P2_BluePrints_Java21_API_Security_JWT
+# front/ -> Helacio/Lab_P3_BluePrints_React_UI
+back/
+front/
