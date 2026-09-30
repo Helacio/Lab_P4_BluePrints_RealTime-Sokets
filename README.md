@@ -5,10 +5,22 @@
 > **Backends guía (elige uno o compáralos):**
 > - **Socket.IO (Node.js):** https://github.com/DECSIS-ECI/example-backend-socketio-node-/blob/main/README.md
 > - **STOMP (Spring Boot):** https://github.com/DECSIS-ECI/example-backend-stopm/tree/main
+>
+> 🎥 **Video de la demo:** https://youtu.be/2ylHehlPyBQ
 
 ---
 
 ## ⬇️ Descarga y puesta en marcha
+
+### ⚡ Camino rápido (recomendado): un solo paso
+
+Antes de hacer la puesta en marcha manual (clonar el backend Socket.IO, instalar y levantar cada servicio por separado), usá el lanzador que ya está en la raíz de este repo:
+
+- **Windows:** doble clic en [`start-lab5.cmd`](./start-lab5.cmd).
+
+El script **clona el backend Socket.IO si falta**, **instala las dependencias** de front y back, y **levanta ambos servicios** en ventanas separadas (front en `:5173`, Socket.IO en `:3001`). Solo requiere tener **Git** y **Node.js + npm** instalados; internet es necesario únicamente la primera vez (para clonar el backend).
+
+Usalo primero para ver todo funcionando; si preferís el paso a paso manual, seguí las secciones de abajo.
 
 ### Prerequisitos
 
@@ -211,7 +223,7 @@ En la interfaz: selecciona **Socket.IO** o **STOMP**, define `author` y `name`, 
 
 ## 📊 Entregables del equipo
 1. Código del Front integrado con **CRUD** y **RT** (Socket.IO o STOMP).  
-2. **Video corto** (≤ 90s) mostrando colaboración en vivo y operaciones CRUD.  
+2. **Video de la demo** (≤ 90s, colaboración en vivo + CRUD): https://youtu.be/2ylHehlPyBQ  
 3. **README del equipo**: setup, endpoints usados, decisiones (rooms/tópicos), y (opcional) breve comparativa Socket.IO vs STOMP.
 
 ---
