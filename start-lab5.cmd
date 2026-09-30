@@ -30,6 +30,14 @@ if not exist "%FRONT%node_modules" (
   popd
 )
 
+if not exist "%FRONT%.env.local" (
+  echo [2/3] Creando .env.local con la API REST y Socket.IO...
+  (
+    echo VITE_API_BASE=http://68.155.159.205:8080
+    echo VITE_IO_BASE=http://localhost:3001
+  ) > "%FRONT%.env.local"
+)
+
 echo [3/3] Levantando servicios...
 start "Lab5 Socket.IO :3001" /D "%SOCKET%" cmd /k npm run dev
 start "Lab5 Front :5173" /D "%FRONT%" cmd /k npm run dev
