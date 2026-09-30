@@ -12,15 +12,22 @@
 
 ## ⬇️ Descarga y puesta en marcha
 
-### ⚡ Camino rápido (recomendado): un solo paso
+Para correr el proyecto **solo tenés que ejecutar** [`start-lab5.cmd`](./start-lab5.cmd) (doble clic en Windows). El script se encarga de todo:
 
-Antes de hacer la puesta en marcha manual (clonar el backend Socket.IO, instalar y levantar cada servicio por separado), usá el lanzador que ya está en la raíz de este repo:
+1. **Clona** el backend Socket.IO del equipo (solo la primera vez).
+2. **Instala** las dependencias de front y back.
+3. **Crea** `.env.local` (si no existe) apuntando la API REST a la VM del equipo (`http://68.155.159.205:8080`) y el tiempo real a `http://localhost:3001`.
+4. **Levanta** ambos servicios: front en `http://localhost:5173` y Socket.IO en `http://localhost:3001`.
 
-- **Windows:** doble clic en [`start-lab5.cmd`](./start-lab5.cmd).
+Requisitos: **Git** y **Node.js 18+** con `npm`. Internet solo se necesita la primera vez (para clonar el backend).
 
-El script **clona el backend Socket.IO si falta**, **instala las dependencias** de front y back, y **levanta ambos servicios** en ventanas separadas (front en `:5173`, Socket.IO en `:3001`). Solo requiere tener **Git** y **Node.js + npm** instalados; internet es necesario únicamente la primera vez (para clonar el backend).
+Después abrí `http://localhost:5173`, ingresá con `student / student123`, elegí **Socket.IO (Node)** en el selector de tecnología y listo.
 
-Usalo primero para ver todo funcionando; si preferís el paso a paso manual, seguí las secciones de abajo.
+> Las secciones siguientes (clonado, `.env.local` y levantado manual) quedan como **referencia opcional** por si querés apuntar a otra API (p. ej. tu Lab P2 local) o ver paso a paso qué hace el script.
+
+---
+
+### 🔧 Referencia opcional: puesta en marcha manual
 
 ### Prerequisitos
 
@@ -45,11 +52,14 @@ git clone https://github.com/Helacio/example-backend-socketio-node-.git
 
 ### 2) Configurar el frontend
 
+> Si usaste `start-lab5.cmd`, este paso ya quedó resuelto: el script crea `.env.local` por vos.
+> Solo hacelo manual si querés apuntar a una API distinta (p. ej. tu Lab P2 local).
+
 En la raíz del frontend crea `.env.local`:
 
 ```bash
-# REST (API CRUD de la Parte 3): VM del equipo o de la1 API local
-VITE_API_BASE=http://68.155.159.205:8080
+# REST (API CRUD de la Parte 3): VM del equipo o tu API local
+VITE_API_BASE=http://68.155.159.205:8080   # o http://localhost:8080 si corrés el Lab_P2 local
 
 # Tiempo real con Socket.IO
 VITE_IO_BASE=http://localhost:3001
@@ -138,6 +148,8 @@ React (Vite)
 ---
 
 ## ⚙️ Variables de entorno (Front)
+> `start-lab5.cmd` ya crea `.env.local` con estos valores. Esta sección es referencia por si querés cambiarlos (p. ej. usar tu Lab P2 local en vez de la VM).
+
 Crea `.env.local` en la raíz del proyecto **Front**:
 ```bash
 # REST (el backend del labP2 + Delete)
@@ -151,7 +163,7 @@ En la UI, selecciona la tecnología en el **selector RT**.
 
 ---
 
-## Puesta en marcha
+## Puesta en marcha manual (opcional)
 
 ### 1) Backend RT (elige uno)
 
@@ -181,6 +193,10 @@ npm i
 npm run dev
 # http://localhost:5173
 ```
+
+> La API REST (CRUD) debe estar configurada en `.env.local` (ver sección "Configurar el frontend").
+> Si no existe, el front intentará `http://localhost:8080` y fallará con `ERR_CONNECTION_REFUSED` al listar planos.
+
 En la interfaz: selecciona **Socket.IO** o **STOMP**, define `author` y `name`, abre **dos pestañas** y dibuja en el canvas (clics).
 
 ---
