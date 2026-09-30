@@ -6,6 +6,73 @@
 > - **Socket.IO (Node.js):** https://github.com/DECSIS-ECI/example-backend-socketio-node-/blob/main/README.md
 > - **STOMP (Spring Boot):** https://github.com/DECSIS-ECI/example-backend-stopm/tree/main
 
+---
+
+## ⬇️ Descarga y puesta en marcha
+
+### Prerequisitos
+
+- **Node.js 18+** (recomendado 20 LTS) y `npm`.
+- **API CRUD de la Parte 3** (una de las dos opciones):
+  1. **VM del equipo (recomendado)**: ya está desplegada en `http://68.155.159.205:8080` y lista para usar. Credenciales: `student / student123`.
+  2. **Local**: el repo `Lab_P2_BluePrints_Java21_API_Security_JWT` (`mvn spring-boot:run`). Requiere Java 21, Maven y, si usas el perfil `pg`, Postgres (o el perfil `dev` con datos en memoria).
+
+### 1) Clonar los repos
+
+```bash
+# Frontend de este laboratorio
+git clone https://github.com/Helacio/Lab_P4_BluePrints_RealTime-Sokets.git
+
+# Backend de tiempo real Socket.IO (repo del equipo)
+git clone https://github.com/Helacio/example-backend-socketio-node-.git
+```
+
+> **Importante**: usa el backend Socket.IO del equipo, no el repo guía del curso.
+> La versión del equipo emite `blueprint-update` con `{ author, name, point }` a toda la sala
+> (`io.to(room)`), que es el contrato que espera este frontend.
+
+### 2) Configurar el frontend
+
+En la raíz del frontend crea `.env.local`:
+
+```bash
+# REST (API CRUD de la Parte 3): VM del equipo o de la1 API local
+VITE_API_BASE=http://68.155.159.205:8080
+
+# Tiempo real con Socket.IO
+VITE_IO_BASE=http://localhost:3001
+```
+
+### 3) Levantar los servicios
+
+Terminal 1 — backend de tiempo real:
+
+```bash
+cd <carpeta-del-backend-socketio>
+npm i
+npm run dev
+# Socket.IO en http://localhost:3001
+```
+
+Terminal 2 — frontend:
+
+```bash
+cd Lab_P4_BluePrints_RealTime-Sokets
+npm i
+npm run dev
+# http://localhost:5173
+```
+
+### 4) Probar
+
+1. Abrir `http://localhost:5173` e ingresar con `student / student123`.
+2. En **Tecnología** seleccionar **Socket.IO (Node)**.
+3. Usa el panel del autor para listar planos (ej. autor `john`), ábrelo y dibuja con clics.
+4. Abre una **segunda pestaña** con el mismo autor y plano: los puntos se replican en tiempo real.
+5. Por último guarda los puntos nuevos con **Save/Update** y prueba **Create** y **Delete**.
+
+---
+
 ## 🎯 Objetivo del laboratorio
 Implementar **colaboración en tiempo real** para el caso de BluePrints. El Front consume la API CRUD de la Parte 3 (o equivalente) y habilita tiempo real usando **Socket.IO** o **STOMP**, para que múltiples clientes dibujen el mismo plano de forma simultánea.
 
@@ -61,24 +128,24 @@ React (Vite)
 ## ⚙️ Variables de entorno (Front)
 Crea `.env.local` en la raíz del proyecto **Front**:
 ```bash
-# REST (tu backend CRUD)
-VITE_API_BASE=http://localhost:8080
+# REST (el backend del labP2 + Delete)
+VITE_API_BASE=http://68.155.159.205:8080   # VM del equipo (o http://localhost:8080 si corre el Lab_P2 local, alojado en "https://github.com/Helacio/Lab_P2_BluePrints_Java21_API_Security_JWT")
 
 # Tiempo real: apunta a uno u otro según el backend que uses
 VITE_IO_BASE=http://localhost:3001     # si usas Socket.IO (Node)
-VITE_STOMP_BASE=http://localhost:8080  # si usas STOMP (Spring)
+VITE_STOMP_BASE=http://68.155.159.205:8080  # si usas STOMP (Spring)
 ```
 En la UI, selecciona la tecnología en el **selector RT**.
 
 ---
 
-## 🚀 Puesta en marcha
+## Puesta en marcha
 
 ### 1) Backend RT (elige uno)
 
 **Opción A — Socket.IO (Node.js)**  
-Sigue el README del repo guía:  
-https://github.com/DECSIS-ECI/example-backend-socketio-node-/blob/main/README.md
+Clona el repo del equipo y sigue su README:  
+https://github.com/Helacio/example-backend-socketio-node-
 ```bash
 npm i
 npm run dev
